@@ -1,2 +1,13 @@
-package fr.sd.reservcreneaux.reservcreneauxfront.Dto;public class ResetRequest {
+package fr.sd.reservcreneaux.reservcreneauxfront.Dto;
+
+public class ResetRequest {
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

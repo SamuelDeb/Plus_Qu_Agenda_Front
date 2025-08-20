@@ -1,11 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Connexion</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+<!--    <h:graphicImage name="images/logo-api.svg" style="width:100px; height:auto; margin-bottom:20px;"/>-->
+
+    <h:form id="loginForm">
+        <h:panelGroup layout="block" styleClass="form-container" style="text-align:center;">
+            <h:graphicImage name="images/logo-api.svg" style="width:100px; height:auto; margin-bottom:20px;"/>
+
+            <h:outputLabel for="username" value="Pseudo" styleClass="login-label"/>
+            <p:inputText id="username" value="#{loginBean.username}" required="true"
+                         requiredMessage="Le pseudo est requis" styleClass="login-input"/>
+
+            <h:outputLabel for="password" value="Mot de passe" styleClass="login-label"/>
+            <p:password id="password" value="#{loginBean.password}" required="true"
+                        requiredMessage="Le mot de passe est requis" styleClass="login-input"/>
+
+            <p:commandButton value="Connexion" action="#{loginBean.login}" styleClass="login-button"
+                             oncomplete="PF('dlgVerifyCode').show()" update=":verifyForm"/>
+
+            <p:commandButton value="Inscription" immediate="true" action="inscription?faces-redirect=true" styleClass="login-button"/>
+
+            <h:outputLink value="#" onclick="PF('forgotPasswordDialog').show()">Mot de passe oublié?</h:outputLink>
+        </h:panelGroup>
+    </h:form>
+
+    <!-- Modal pour la demande du nom d'utilisateur -->
+    <p:dialog id="forgotPasswordDialog" header="Mot de passe oublié" widgetVar="forgotPasswordDialog" modal="true" closable="false" resizable="false">
+        <h:form id="forgotPasswordForm">
+            <h:panelGrid columns="1">
+                <h:outputText value="Un email vous sera envoyé à l'adresse associée à votre compte avec un code de réinitialisation." styleClass="info-text" />
+
+                <h:outputLabel for="forgotUsername" value="Pseudo"/>
+                <p:inputText id="forgotUsername" value="#{loginBean.forgotUsername}" required="true" requiredMessage="Le pseudo est requis"/>
+                <p:commandButton value="Valider" action="#{loginBean.sendResetCode}" update="forgotPasswordMessage" oncomplete="if (!args.validationFailed) PF('forgotPasswordDialog').hide(); window.location='resetPassword.xhtml';"/>
+                <p:message id="forgotPasswordMessage" for="forgotUsername"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+
+    <!-- Modal pour la vérification du code reçu par email -->
+    <p:dialog id="dlgVerifyCode" header="Saisissez le code de vérification" widgetVar="dlgVerifyCode" modal="true" closable="false" resizable="false">
+        <h:form id="verifyForm">
+            <!-- Champ caché pour stocker le nom d'utilisateur-->
+            <h:inputHidden id="hiddenUsername" value="#{loginBean.username}"/>
+
+            <h:outputText value="Un email a été envoyé à l'adresse associée à votre compte avec un code de vérification." styleClass="info-text" />
+            <!-- Verification Code Input -->
+            <h:outputLabel for="verificationCode" value="Code de vérification" styleClass="login-label"/>
+            <p:inputText id="verificationCode" value="#{loginBean.verificationCode}" required="true"
+                         requiredMessage="Le code de vérification est requis" styleClass="login-input"/>
+
+            <p:commandButton value="Valider" action="#{loginBean.validateCode}" styleClass="login-button"
+                             update=":verifyForm"/>
+        </h:form>
+    </p:dialog>
+</h:body>
 </html>

@@ -1,11 +1,118 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+<h:head>
+    <title>Accueil</title>
+    <h:outputStylesheet library="css" name="accueilCss.css"/>
+</h:head>
+
+<h:body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h:graphicImage name="images/logo-api.svg" style="width:100px; height:auto; margin-bottom:20px;"/>
+    <div class="navbar-buttons">
+        <p:commandButton value="Créer créneau" action="#{loginBean.createSlot}" styleClass="navbar-button"/>
+        <p:commandButton value="Réserver un créneau" action="#{accueilBean.reserverCreneaux}" styleClass="navbar-button"/>
+        <p:commandButton value="Modifier le profil" action="#{loginBean.editProfile}" styleClass="navbar-button" style="display: none"/>
+        <p:commandButton value="Modifier mot de passe" action="#{loginBean.changePassword}" styleClass="navbar-button" style="display: none"/>
+        <p:commandButton value="Mes créneaux" action="#{loginBean.mySlots}" styleClass="navbar-button" style="display: none"/>
+<!--         -->
+    </div>
+        <p:commandButton value="Déconnexion" action="#{loginBean.logout}" styleClass="profile-button logout-button"/>
+    </div>
+
+    <div class="main-container">
+    <div class="profile-section">
+        <h1>Bonjour, #{accueilBean.username}</h1>
+
+<!--        <h:panelGrid columns="2" class="profile-details">-->
+<!--            <h:outputLabel value="Prénom :" />-->
+<!--            <h:outputText value="#{accueilBean.user.profile.prenom}" />-->
+
+<!--            <h:outputLabel value="Nom :" />-->
+<!--            <h:outputText value="#{accueilBean.user.profile.nom}" />-->
+
+<!--            <h:outputLabel value="Adresse :" />-->
+<!--            <h:outputText value="#{accueilBean.user.profile.adresse}" />-->
+
+<!--            <h:outputLabel value="Description :" />-->
+<!--            <h:outputText value="#{accueilBean.user.profile.description}" />-->
+<!--        </h:panelGrid>-->
+        <p:commandButton value="Réserver un créneau" action="#{accueilBean.reserverCreneaux}" styleClass="navbar-button" style="display: none"/>
+        <h:panelGrid columns="1" class="profile-details">
+            <h:outputText value="#{loginBean.username}" styleClass="profile-username"/>
+            <p:commandButton value="Modifier le profil" action="#{loginBean.editProfile}" styleClass="profile-button"/>
+            <p:commandButton value="Modifier mot de passe" action="#{loginBean.changePassword}" styleClass="profile-button"/>
+        </h:panelGrid>
+    </div>
+
+
+    <div class="content-section">
+    <h:form id="profileForm">
+        <div class="main-content">
+            <div class="section-header" style="margin-top: 20px">Vos créneaux disponible</div>
+            <h:dataTable value="#{creneauxBean.creneauxList}" var="creneau" styleClass="slots-table">
+                <h:column>
+                    <f:facet name="header">Date</f:facet>
+                    <h:outputText value="#{creneau.date}">
+                        <f:convertDateTime pattern="dd-MM" />
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Heure Début</f:facet>
+                    <h:outputText value="#{creneau.heureDebut}">
+                        <f:convertDateTime pattern="HH:mm" />
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    <h:outputText value="#{creneau.type}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    <h:outputText value="#{creneau.description}" />
+                </h:column>
+            </h:dataTable>
+        </div>
+
+        <div class="main-content">
+            <div class="section-header">Vos créneaux réservés</div>
+            <h:dataTable value="#{creneauxBean.reservedCreneauxList}" var="reservedSlot" styleClass="slots-table">
+                <h:column>
+                    <f:facet name="header">Date</f:facet>
+                    <h:outputText value="#{reservedSlot.date}">
+                        <f:convertDateTime pattern="dd-MM" />
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Heure Début</f:facet>
+                    <h:outputText value="#{reservedSlot.heureDebut}">
+                        <f:convertDateTime pattern="HH:mm" />
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Heure Fin</f:facet>
+                    <h:outputText value="#{reservedSlot.heureFin}">
+                        <f:convertDateTime pattern="HH:mm" />
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    <h:outputText value="#{reservedSlot.type}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    <h:outputText value="#{reservedSlot.description}" />
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:form>
+    </div>
+    </div>
+</h:body>
 </html>

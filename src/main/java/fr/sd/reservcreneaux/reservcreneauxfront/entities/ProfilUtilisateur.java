@@ -1,46 +1,37 @@
-package fr.sd.reservcreneaux.reservcreneauxfront.Bean;
+package fr.sd.reservcreneaux.reservcreneauxfront.entities;
+import jakarta.persistence.Embeddable;
 
+@Embeddable
 public class ProfilUtilisateur {
-    private String firstName;
-    private String lastName;
-    private String address;
+    private String nom;
+    private String prenom;
+    private String adresse;
     private String description;
 
-    // Default constructor
-    public ProfilUtilisateur() {
+    // Getters and setters...
+
+    public String getNom() {
+        return nom;
     }
 
-    // Parameterized constructor
-    public ProfilUtilisateur(String firstName, String lastName, String address, String description) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.description = description;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    // Getters and setters
-    public String getFirstName() {
-        return firstName;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public String getDescription() {

@@ -1,29 +1,100 @@
-/* Styles généraux pour la page */
+
+/*!* Styles pour les labels des champs *!*/
+/*label {*/
+/*    display: block; !* Les labels prennent toute la largeur *!*/
+/*    margin-bottom: 5px; !* Marge sous les labels *!*/
+/*    font-weight: bold; !* Texte en gras pour les labels *!*/
+/*}*/
+
+/*!* Styles pour les champs de texte *!*/
+/*input[type="text"], input[type="password"] {*/
+/*    width: 100%; !* Largeur complète dans le conteneur *!*/
+/*    padding: 8px; !* Espacement intérieur pour le texte *!*/
+/*    margin-bottom: 20px; !* Marge sous chaque champ *!*/
+/*    border: 1px solid #ccc; !* Bordure subtile *!*/
+/*    border-radius: 4px; !* Coins légèrement arrondis pour les champs *!*/
+/*}*/
+
+/*!* Styles pour les boutons *!*/
+/*input[type="submit"] {*/
+/*    width: 100%; !* Largeur complète pour les boutons *!*/
+/*    padding: 10px; !* Espacement intérieur pour les boutons *!*/
+/*    background-color: #C0392B; !* Couleur de fond pour le bouton *!*/
+/*    border: none; !* Pas de bordure pour le bouton *!*/
+/*    color: white; !* Texte blanc *!*/
+/*    font-weight: bold; !* Texte en gras *!*/
+/*    border-radius: 4px; !* Coins arrondis pour le bouton *!*/
+/*    cursor: pointer; !* Curseur de pointeur pour indiquer la cliquabilité *!*/
+/*}*/
+
+/*input[type="submit"]:hover {*/
+/*    background-color: #A93226; !* Couleur plus sombre lors du survol *!*/
+/*}*/
+
+/*!* Style pour le lien de mot de passe oublié *!*/
+/*a {*/
+/*    color: #C0392B; !* Couleur de lien pour correspondre au bouton *!*/
+/*    text-decoration: none; !* Pas de soulignement *!*/
+/*    display: block; !* Bloc pour alignement central *!*/
+/*    text-align: center; !* Texte centré *!*/
+/*    margin-top: 10px; !* Marge au-dessus du lien *!*/
+/*}*/
+
+
+
+/*body {*/
+/*    background-color: #f4cccc; !* Couleur de fond *!*/
+/*    font-family: Arial, sans-serif;*/
+/*    color: #444;*/
+/*    margin: 0;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*}*/
+
+
+/*.content {*/
+/*    margin-top: 80px; !* Ajuste la marge supérieure pour éviter que le contenu ne soit caché sous la barre *!*/
+/*}*/
+
+
+/*.form-container {*/
+/*    background-color: #fff;*/
+/*    padding: 20px;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
+/*    width: 400px;*/
+/*}*/
+
+/*.label {*/
+/*    font-weight: bold;*/
+/*    text-align: right;*/
+/*    padding-right: 10px;*/
+/*}*/
+
+/*.value {*/
+/*    text-align: left;*/
+/*}*/
+
+
 body {
-    background-color: #FADBD8; /* Arrière-plan rose clair */
-    font-family: Arial, sans-serif; /* Police de caractères */
-    color: #444; /* Couleur de texte générale */
+    background-color: #f4cccc; /* Couleur de fond */
+    font-family: Arial, sans-serif;
+    color: #444;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    height: 100vh; /* Hauteur de la vue pour centrer parfaitement */
 }
 
-/* Styles pour le formulaire */
-form {
-    width: 300px; /* Largeur fixe pour le formulaire */
-    margin: 100px auto; /* Centrage du formulaire */
-    padding: 20px; /* Espacement intérieur */
-    background-color: #FFFFFF; /* Arrière-plan blanc pour le formulaire */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre subtile */
-    border-radius: 8px; /* Coins arrondis */
-}
-
-/* Styles pour les labels des champs */
 label {
     display: block; /* Les labels prennent toute la largeur */
     margin-bottom: 5px; /* Marge sous les labels */
     font-weight: bold; /* Texte en gras pour les labels */
 }
 
-/* Styles pour les champs de texte */
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="time"], textarea {
     width: 100%; /* Largeur complète dans le conteneur */
     padding: 8px; /* Espacement intérieur pour le texte */
     margin-bottom: 20px; /* Marge sous chaque champ */
@@ -31,23 +102,21 @@ input[type="text"], input[type="password"] {
     border-radius: 4px; /* Coins légèrement arrondis pour les champs */
 }
 
-/* Styles pour les boutons */
-input[type="submit"] {
-    width: 100%; /* Largeur complète pour les boutons */
+button, input[type="submit"] {
+    width: 40%; /* Largeur complète pour les boutons */
     padding: 10px; /* Espacement intérieur pour les boutons */
-    background-color: #C0392B; /* Couleur de fond pour le bouton */
+    background-color: #e14c3d; /* Couleur de fond pour le bouton */
     border: none; /* Pas de bordure pour le bouton */
     color: white; /* Texte blanc */
     font-weight: bold; /* Texte en gras */
-    border-radius: 4px; /* Coins arrondis pour le bouton */
+    border-radius: 5px; /* Coins arrondis pour le bouton */
     cursor: pointer; /* Curseur de pointeur pour indiquer la cliquabilité */
 }
 
-input[type="submit"]:hover {
+button:hover, input[type="submit"]:hover {
     background-color: #A93226; /* Couleur plus sombre lors du survol */
 }
 
-/* Style pour le lien de mot de passe oublié */
 a {
     color: #C0392B; /* Couleur de lien pour correspondre au bouton */
     text-decoration: none; /* Pas de soulignement */
@@ -56,173 +125,54 @@ a {
     margin-top: 10px; /* Marge au-dessus du lien */
 }
 
-
-
-body {
-    background-color: #f4cccc; /* Couleur de fond */
-    font-family: Arial, sans-serif;
-    color: #444;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.navbar {
-    width: 100%;
-    background-color: #844c82; /* Couleur de la barre de navigation */
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar-button {
-    background-color: #ffffff;
-    color: #844c82;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.navbar-button:hover {
-    background-color: #6f3c69;
-    color: #ffffff;
-}
-
-.logout-button {
-    background-color: #d9534f; /* Couleur spécifique pour la déconnexion */
-}
-
-.logout-button:hover {
-    background-color: #c9302c;
-}
-
-.profile-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-    margin: 20px;
-}
-
-.profile-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-}
-
-.profile-details {
-    margin: 0 auto;
-}
-
-.profile-username {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.profile-email {
-    color: #888;
-    margin-bottom: 20px;
-}
-
-.profile-button {
-    background-color: #844c82; /* Couleur du bouton */
-    color: white;
-    border: none;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.profile-button:hover {
-    background-color: #6f3c69;
-}
-
-.main-content {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    width: 80%;
-}
-
-.section-header {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: #844c82;
-}
-
-.slots-table {
-    width: 100%;
-    margin-bottom: 20px;
-    border-collapse: collapse;
-}
-
-.slots-table th, .slots-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.slots-table th {
-    background-color: #844c82;
-    color: white;
-    text-align: left;
-}
-body {
-    background-color: #f4cccc; /* Couleur de fond */
-    font-family: Arial, sans-serif;
-    color: #444;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
 .form-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 400px;
+    text-align: center;
 }
 
-.label {
-    font-weight: bold;
-    text-align: right;
-    padding-right: 10px;
-}
-
-.value {
+.login-label {
     text-align: left;
+    margin-bottom: 10px;
+    display: block;
 }
 
-p:inputText, p:inputNumber, p:inputMask, p:selectOneMenu {
-    width: 100%;
+.login-input {
     margin-bottom: 20px;
 }
 
-p:commandButton {
-    width: 100%;
-    background-color: #844c82; /* Couleur du bouton */
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+.login-button {
+    margin-bottom: 10px;
+    margin-right: 10px;
 }
 
-p:commandButton:hover {
-    background-color: #6f3c69;
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FADBD8;
+    border-bottom: 1px solid #ccc;
+    z-index: 1000;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar-button {
+    /* Add styles for navbar buttons if needed */
+}
+
+.logout-button {
+    margin-left: auto;
 }

@@ -1,5 +1,7 @@
 package fr.sd.reservcreneaux.reservcreneauxfront.Bean;
 
+
+import fr.sd.reservcreneaux.reservcreneauxfront.entities.ProfilUtilisateur;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
@@ -17,44 +19,13 @@ import java.util.logging.Logger;
 @Named
 @RequestScoped
 public class ProfileBean {
-
     private static final Logger LOGGER = Logger.getLogger(ProfileBean.class.getName());
 
     private String username;
     private ProfilUtilisateur profile = new ProfilUtilisateur();
 
-    public void saveProfile() {
-        LOGGER.info("Saving profile for user: " + username);
-        LOGGER.info("First Name: " + profile.getFirstName());
-        LOGGER.info("Last Name: " + profile.getLastName());
-        LOGGER.info("Address: " + profile.getAddress());
-        LOGGER.info("Description: " + profile.getDescription());
+    // Getters and setters for username and profile
 
-        Client client = ClientBuilder.newClient();
-        try {
-            Response response = client.target("http://localhost:8080/reservcreneaux/profiles/update")
-                    .queryParam("username", username)
-                    .request(MediaType.APPLICATION_JSON)
-                    .put(Entity.entity(profile, MediaType.APPLICATION_JSON));
-
-            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Profile saved successfully!"));
-                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-                ec.redirect(ec.getRequestContextPath() + "/profiles/" + username);
-            } else {
-                String errorMessage = response.readEntity(String.class);
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur", errorMessage));
-                LOGGER.severe("Error saving profile: " + errorMessage);
-            }
-        } catch (IOException e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur", e.getMessage()));
-            LOGGER.severe("Exception saving profile: " + e.getMessage());
-        } finally {
-            client.close();
-        }
-    }
-
-    // Getters and setters
     public String getUsername() {
         return username;
     }
@@ -70,5 +41,37 @@ public class ProfileBean {
     public void setProfile(ProfilUtilisateur profile) {
         this.profile = profile;
     }
-}
 
+    public void saveProfile() {
+        LOGGER.info("Saving profile for user: " + username);
+        LOGGER.info("First Name: " + profile.getPrenom());
+        LOGGER.info("Last Name: " + profile.getNom());
+        LOGGER.info("Address: " + profile.getAdresse());
+        LOGGER.info("Description: " + profile.getDescription());;
+
+        Client client = ClientBuilder.newClient();
+        try {
+            Response response = client.target("http://localhost:8080/reservcreneaux/profiles/update")
+                    .queryParam("username", username)
+                    .request(MediaType.APPLICATION_JSON)
+                    .put(Entity.entity(profile, MediaType.APPLICATION_JSON));
+
+            if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Profile saved successfully!"));
+                ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+//                ec.redirect(ec.getRequestContextPath() + "/profiles/" + username);
+                ec.redirect(ec.getRequestContextPath() + "/accueil.xhtml");
+
+            } else {
+                String errorMessage = response.readEntity(String.class);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur", errorMessage));
+                LOGGER.severe("Error saving profile: " + errorMessage);
+            }
+        } catch (IOException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur", e.getMessage()));
+            LOGGER.severe("Exception saving profile: " + e.getMessage());
+        } finally {
+            client.close();
+        }
+    }
+}

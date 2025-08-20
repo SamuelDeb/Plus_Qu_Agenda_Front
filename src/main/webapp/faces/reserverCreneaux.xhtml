@@ -1,11 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+<h:head>
+    <title>Réserver Créneau</title>
+    <h:outputStylesheet library="css" name="accueilCss.css"/>
+</h:head>
+
+<h:body>
+
+    <div class="navbar">
+        <h:graphicImage name="images/logo-api.svg" style="width:100px; height:auto; margin-bottom:20px;"/>
+        <h1>Réserver un créneau</h1>
+    <div class="navbar-buttons">
+    <p:commandButton value="Accueil" action="accueil?faces-redirect=true" styleClass="navbar-button" />
+    </div>
+    </div>
+
+    <div class="content-section" style="margin-top: 100px">
+        <h:form id="profileForm">
+            <div class="main-content">
+            <div class="section-header" style="margin-top: 20px">Liste des créneaux disponible</div>
+        <h:dataTable id="creneauxTable" value="#{creneauxBean.availableCreneauxList}" var="creneau" styleClass="slots-table">
+            <h:column>
+                <f:facet name="header">Date</f:facet>
+                <h:outputText value="#{creneau.date}">
+                    <f:convertDateTime pattern="dd-MM" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Heure Début</f:facet>
+                <h:outputText value="#{creneau.heureDebut}">
+                    <f:convertDateTime pattern="HH:mm" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Heure Fin</f:facet>
+                <h:outputText value="#{creneau.heureFin}">
+                    <f:convertDateTime pattern="HH:mm" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Type</f:facet>
+                <h:outputText value="#{creneau.type}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                <h:outputText value="#{creneau.description}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <p:commandButton value="Réserver" action="#{creneauxBean.reserveCreneau(creneau.id)}" update="creneauxTable"/>
+            </h:column>
+        </h:dataTable>
+            </div>
+
+    </h:form>
+    </div>
+</h:body>
 </html>

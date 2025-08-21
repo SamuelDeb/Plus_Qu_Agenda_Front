@@ -44,3 +44,10 @@ L'accent a été mis sur l'intégration avec le backend via des appels API REST 
 - Récupération des créneaux disponibles :  
   [`CreneauxBean.loadAllCreneauxAvailable`](src/main/java/fr/sd/reservcreneaux/reservcreneauxfront/Bean/CreneauxBean.java)
 
+## Screenshot
+![Inscription](screen_front/frontInscription.png)
+![Connexion](screen_front/frontconnexion.png)
+![Accueil](screen_front/accueil1.png)
+
+
+
